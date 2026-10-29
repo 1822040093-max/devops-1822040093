@@ -2,8 +2,9 @@
 
 - **Họ và tên**: Dương Hoàng Thái
 - **MSSV**: 1822040093
+- **Tài khoản GitHub**: `1822040093-max`
 - **Tên Repository GitHub**: `devops-1822040093`
-- **Địa chỉ website GitHub Pages sau deploy**: `https://<tên-tài-khoản-github-của-bạn>.github.io/devops-1822040093/`
+- **Địa chỉ website GitHub Pages sau deploy**: `https://1822040093-max.github.io/devops-1822040093/`
 
 ---
 
@@ -51,19 +52,10 @@
 Mở Terminal / PowerShell tại thư mục này (`d:\1822040093-DuongHoangThai-BTCN`), chạy lần lượt các lệnh:
 
 ```bash
-# 1. Thêm tất cả file vào staging
-git add .
+# 1. Liên kết với remote repository của bạn trên GitHub
+git remote add origin https://github.com/1822040093-max/devops-1822040093.git
 
-# 2. Tạo commit đầu tiên
-git commit -m "feat: Trien khai website va pipeline CI/CD GitHub Actions"
-
-# 3. Đổi tên nhánh chính thành main (nếu chưa phải main)
-git branch -M main
-
-# 4. Liên kết với remote repository của bạn trên GitHub (thay <username> bằng tên GitHub của bạn)
-git remote add origin https://github.com/<username>/devops-1822040093.git
-
-# 5. Đẩy code lên GitHub
+# 2. Đẩy code lên nhánh main
 git push -u origin main
 ```
 
@@ -78,7 +70,7 @@ git push -u origin main
      - **Job 2 (deploy)**: Tự động chạy sau khi job `check` màu xanh (thành công) và xuất bản lên GitHub Pages.
 2. Khi job `deploy` hoàn thành, URL website sẽ xuất hiện:
    ```text
-   https://<username>.github.io/devops-1822040093/
+   https://1822040093-max.github.io/devops-1822040093/
    ```
 3. Truy cập vào đường link trên để kiểm tra website hoạt động với đầy đủ họ tên **Dương Hoàng Thái - 1822040093**.
 
@@ -120,7 +112,7 @@ git push -u origin main
    ```
 3. Vào lại tab **Actions**:
    - Thấy job `check` và job `deploy` đều xanh lá cây (Success).
-4. Mở lại link website `https://<username>.github.io/devops-1822040093/` để xác nhận giao diện đã được cập nhật sang "Phiên bản 2.0".
+4. Mở lại link website `https://1822040093-max.github.io/devops-1822040093/` để xác nhận giao diện đã được cập nhật sang "Phiên bản 2.0".
    - **Chụp ảnh màn hình lại để dán vào file Word báo cáo!**
 
 ---
