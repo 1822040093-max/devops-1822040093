@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dương Hoàng Thái - 1822040093 | CI/CD GitHub Actions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-glow"></div>
+    
+    <main class="container">
+        <!-- Header Profile Card -->
+        <header class="card profile-card">
+            <div class="badge">CI/CD Pipeline Demo</div>
+            <h1>Dương Hoàng Thái - 1822040093</h1>
+            <p class="subtitle">Triển khai website tự động với GitHub Actions & GitHub Pages</p>
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                <span class="status-text" id="pipeline-status">Hệ thống đang hoạt động bình thường (v1.0)</span>
+            </div>
+        </header>
+
+        <!-- Pipeline Workflow Overview -->
+        <section class="card workflow-card">
+            <h2>Quy trình Pipeline CI/CD</h2>
+            <div class="workflow-steps">
+                <div class="step-item">
+                    <div class="step-num">1</div>
+                    <div class="step-content">
+                        <h3>Git Push</h3>
+                        <p>Đẩy mã nguồn lên nhánh <code>main</code> trên GitHub</p>
+                    </div>
+                </div>
+                <div class="step-divider">➔</div>
+                <div class="step-item">
+                    <div class="step-num">2</div>
+                    <div class="step-content">
+                        <h3>Job Check</h3>
+                        <p>Kiểm tra đủ 3 file & thẻ <code>&lt;title&gt;</code></p>
+                    </div>
+                </div>
+                <div class="step-divider">➔</div>
+                <div class="step-item">
+                    <div class="step-num">3</div>
+                    <div class="step-content">
+                        <h3>Job Deploy</h3>
+                        <p>Tự động xuất bản lên GitHub Pages</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Playground -->
+        <section class="card interactive-card">
+            <h2>Trải nghiệm tương tác</h2>
+            <p>Kiểm tra các tương tác JavaScript và đồng hồ thời gian thực.</p>
+            <div class="clock-box">
+                <span id="current-time">00:00:00</span>
+                <span id="current-date">Ngày -- tháng -- năm ----</span>
+            </div>
+            <div class="btn-group">
+                <button id="btn-count" class="btn btn-primary">Số lượt click: <span id="click-counter">0</span></button>
+                <button id="btn-theme" class="btn btn-secondary">Đổi chế độ màu</button>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2026 - Dương Hoàng Thái (MSSV: 1822040093). DevOps & Cloud Computing.</p>
+        </footer>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>

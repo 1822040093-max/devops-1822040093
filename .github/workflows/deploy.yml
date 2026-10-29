@@ -1,0 +1,80 @@
+name: CI/CD Pipeline - Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  check:
+    name: Kiểm tra mã nguồn (Check)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bước 1: Tải mã nguồn (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Bước 2: Kiểm tra tồn tại đủ 3 file bắt buộc (index.html, style.css, script.js)
+        run: |
+          echo "=== KIỂM TRA SỰ TỒN TẠI CỦA CÁC FILE CẦN THIẾT ==="
+          REQUIRED_FILES=("index.html" "style.css" "script.js")
+          ALL_FOUND=true
+
+          for file in "${REQUIRED_FILES[@]}"; do
+            if [ -f "$file" ]; then
+              echo "✔ Tìm thấy: $file"
+            else
+              echo "✖ THIẾU FILE: $file"
+              ALL_FOUND=false
+            fi
+          done
+
+          if [ "$ALL_FOUND" = false ]; then
+            echo "❌ LỖI: Dự án không có đủ 3 file quy định!"
+            exit 1
+          fi
+          echo "=> Đạt yêu cầu: Đã có đủ 3 file."
+
+      - name: Bước 3: Kiểm tra thẻ <title> trong file index.html
+        run: |
+          echo "=== KIỂM TRA THẺ <title> TRONG FILE index.html ==="
+          if grep -Eqi "<title>[^<]+</title>" index.html; then
+            TITLE_CONTENT=$(grep -Eoi "<title>[^<]+</title>" index.html | head -n 1)
+            echo "✔ Tìm thấy thẻ: $TITLE_CONTENT"
+            echo "=> Đạt yêu cầu: Thẻ <title> hợp lệ."
+          else
+            echo "❌ LỖI: File index.html không chứa thẻ <title> hợp lệ hoặc thẻ bị rỗng!"
+            exit 1
+          fi
+
+  deploy:
+    name: Triển khai website (Deploy)
+    runs-on: ubuntu-latest
+    needs: check
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Bước 1: Tải mã nguồn (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Bước 2: Cấu hình GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Bước 3: Nén và tải artifact lên Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Bước 4: Triển khai lên GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
